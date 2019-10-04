@@ -1,0 +1,65 @@
+  [1m[35m (711.8ms)[0m  [1m[35mCREATE DATABASE "dm_toolkit_development" ENCODING = 'unicode'[0m
+  [1m[35m (465.5ms)[0m  [1m[35mCREATE DATABASE "dm_toolkit_test" ENCODING = 'unicode'[0m
+  [1m[35m (142.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (33.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3260520062093897925)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20191004172815)
+  [1m[35m (23.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "image" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191004172815"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-10-04 17:40:58.480955"], ["updated_at", "2019-10-04 17:40:58.480955"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3260520062093897925)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for ::1 at 2019-10-04 13:47:06 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"users"=>{"username"=>"andrewhollingworth", "email"=>"andrew.hollingworth@gmail.com", "password"=>"[FILTERED]", "image"=>""}, "user"=>{}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 3.0ms | Allocations: 226)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:50:in `user_params'
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2019-10-04 13:47:17 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"andrewhollingworth", "email"=>"andrew.hollingworth@gmail.com", "password"=>"[FILTERED]", "image"=>""}}
+  [1m[35m (2.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrewhollingworth"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "andrew.hollingworth@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Create (88.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "andrewhollingworth"], ["email", "andrew.hollingworth@gmail.com"], ["password_digest", "$2a$12$34gGHzKwR4UdrEesScG/WudXFx6u3GnzK8EwmSGuSYSA4jY0bMLZC"], ["image", ""], ["created_at", "2019-10-04 17:47:17.982637"], ["updated_at", "2019-10-04 17:47:17.982637"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 201 Created in 550ms (Views: 2.6ms | ActiveRecord: 138.5ms | Allocations: 9370)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-04 13:48:59 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"andrewhollingworth", "password"=>"[FILTERED]"}, "authentication"=>{"user"=>{"username"=>"andrewhollingworth", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.7ms | Allocations: 1335)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/authentication_controller.rb:7:in `login'
+Started POST "/auth/login" for ::1 at 2019-10-04 13:49:14 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"username"=>"andrewhollingworth", "password"=>"[FILTERED]", "authentication"=>{"username"=>"andrewhollingworth", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (112.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrewhollingworth"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 469ms (Views: 0.4ms | ActiveRecord: 112.9ms | Allocations: 1056)
+
+
