@@ -29,11 +29,29 @@ My MVP includes 3 types of data, with room to expand to additional datasets if t
 
 ![React Architecture](https://i.imgur.com/TUfjhLS.png "React Architecture")
 
-| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Adding Form | H | 3hrs| 3.5hrs | 3.5hrs |
-| Working with API | H | 3hrs| 2.5hrs | 2.5hrs |
-| Total | H | 6hrs| 5hrs | 5hrs |
+| Component | Priority | Estimated Time | Actual Time |
+| --- | :---: |  :---: | :---: |
+| Rails Models | H | 4hrs| TBD |
+| Building Datasets | H | 4 hrs| TBD |
+| Tailoring Routes | H | 2 hrs| TBD |
+| Initial React Build | H | 2 hrs| TBD |
+| Building Navigation | H | 2 hrs| TBD |
+| Styling Navigation | H | 4 hrs| TBD |
+| Auth Link Front to Back | H | 4 hrs| TBD |
+| Auth Styling | H | 4 hrs| TBD |
+| User Profile Link to Back End | H | 4 hrs| TBD |
+| User Profile Rendering/Styling | H | 4 hrs| TBD |
+| Setup Framework for DM Screen List | H | 4 hrs| TBD |
+| Render Combat Data | H | 3 hrs| TBD |
+| Style Combat Data | H | 3 hrs| TBD |
+| Render Ability Checks Data | H | 2 hrs| TBD |
+| Style Ability Checks Data | H | 3 hrs| TBD |
+| Render Rest Data | H | 1 hrs| TBD |
+| Style Rest Data | H | 2 hrs| TBD |
+| Render 'Current DM Screen' | H | 4 hrs| TBD |
+| Style 'Current DM Screen' | H | 4 hrs| TBD |
+| Responsive Styling | H | 6 hrs| TBD |
+| Total | H | 66hrs| TBD |
 
 ## MVP
 - A responsive website with a Ruby on Rails backend and React frontend.
@@ -58,11 +76,10 @@ My MVP includes 3 types of data, with room to expand to additional datasets if t
   - etc.
 
 ## Additional Libraries
-Axios, Rails, Material-Ui, React-Router-Dom, Postgres
+Axios, Rails, Material-Ui, React-Router-Dom, Postgres, Cors
 
 ## Code Snippet
 TBD
 
 ## Issues and Resolutions
-
 TBD
