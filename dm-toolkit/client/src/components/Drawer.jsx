@@ -9,11 +9,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+// ICONS 
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 // My Additions
@@ -104,10 +106,25 @@ export default function MiniDrawer(props) {
         position="fixed"
         className={clsx(classes.appBar)}
       >
-        <Toolbar>
+        <Toolbar className='toolbar'>
           <Typography variant="h5" noWrap>
             <Link className='nodesto' to='/'>Heward's Handy DM Screen</Link>
           </Typography>
+          {
+            props.currentUser
+              ?
+              <>
+                <p>Hello, {props.currentUser.username}</p>
+                <button onClick={props.handleLogout}>Logout</button>
+              </>
+              :
+              ''
+          }
+          <Link to='/login'>
+            <IconButton>
+              <AccountCircleIcon />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -130,12 +147,12 @@ export default function MiniDrawer(props) {
           className={clsx({
             [classes.hide]: open,
           })}>
-          <ChevronRightIcon />
+          <ArrowForwardIcon />
         </IconButton>
         <IconButton onClick={handleDrawerClose} className={clsx({
           [classes.hide]: !open,
         })}>
-          <ChevronLeftIcon />
+          <ArrowBackIcon />
         </IconButton>
         {/* START OF MENU AND ICONS */}
         <Divider />
@@ -159,16 +176,6 @@ export default function MiniDrawer(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {
-          props.currentUser
-            ?
-            <>
-              <p>Hello, {props.currentUser.username}</p>
-              <button onClick={props.handleLogout}>Logout</button>
-            </>
-            :
-            <Link to='/login'><button>Login/Signup</button></Link>
-        }
         <Route path='/login' render={() => (
           <Login
             authFormData={props.authFormData}
@@ -184,6 +191,6 @@ export default function MiniDrawer(props) {
           />
         )} />
       </main>
-    </div>
+    </div >
   );
 }
