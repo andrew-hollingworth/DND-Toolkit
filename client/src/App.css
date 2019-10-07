@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* FONT FACE UPLOADS */
+/* CREATIVE COMMONS LICENSE */
+/* SOURCE: https://benlk.github.io/solbera-dnd-fonts/ */
+/* Upload instructions: https://medialoot.com/blog/how-to-use-web-fonts/ */
+@font-face {
+	font-family: "Mr Eaves Small Caps";
+	src: url("./fonts/Mr Eaves Small Caps.otf") format("opentype");
+	font-weight: normal;
+}
+@font-face {
+	font-family: "Nodesto Caps Condensed";
+	src: url("./fonts/Nodesto Caps Condensed.otf") format("opentype");
+	font-weight: normal;
+}
+@font-face {
+	font-family: "Scaly Sans Bold Italic";
+	src: url("./fonts/Scaly Sans Bold Italic.otf") format("opentype");
+	font-weight: bold;
+	font-style: italic;
+}
+@font-face {
+font-family: "Scaly Sans Bold";
+src: url("./fonts/Scaly Sans Bold.otf") format("opentype");
+font-weight: bold;
+font-style: normal;
+}
+@font-face {
+	font-family: "Scaly Sans Italic";
+	src: url("./fonts/Scaly Sans Italic.otf") format("opentype");
+	font-weight: normal;
+	font-style: italic;
+}
+@font-face {
+	font-family: "Scaly Sans";
+	src: url("./fonts/Scaly Sans.otf") format("opentype");
+	font-weight: normal;
+}
+@font-face {
+	font-family: "Zatanna Misdirection";
+	src: url("./fonts/Zatanna Misdirection.otf") format("opentype");
+	font-weight: normal;
+}
+.eaves {
+  font-family: "Mr Eaves Small Caps", serif;
+}
+.nodesto {
+  font-family: 'Nodesto Caps Condensed', serif;
+
+}
+.scaly-b-i {
+  font-family: 'Scaly Sans Bold Italic', serif;
+}
+.scaly-b {
+  font-family: 'Scaly Sans Bold', serif;
+}
+.scaly-i {
+  font-family: 'Scaly Sans Italic', serif;
+}
+.scaly {
+  font-family: 'Scaly Sans', serif;
+}
+.zatanna {
+	font-family: 'Zatanna Misdirection', sans-serif;
+}
