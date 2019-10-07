@@ -63,3 +63,461 @@ Processing by AuthenticationController#login as */*
 Completed 200 OK in 469ms (Views: 0.4ms | ActiveRecord: 112.9ms | Allocations: 1056)
 
 
+Started POST "/users" for ::1 at 2019-10-04 16:51:50 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"povertypan@gmail.com"}}
+  [1m[35m (41.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (199.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "povertypan@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Create (69.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "povertypan"], ["email", "povertypan@gmail.com"], ["password_digest", "$2a$12$ifSOI5Z1SqmO46J85iMM7ezxNqOceVy9PqOD/GJjSHmVjhCetDY4i"], ["created_at", "2019-10-04 20:51:53.878209"], ["updated_at", "2019-10-04 20:51:53.878209"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (43.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 201 Created in 1400ms (Views: 20.3ms | ActiveRecord: 354.1ms | Allocations: 4400)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-04 16:52:26 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"povertypan@gmail.com", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"povertypan@gmail.com"}}
+  [1m[36mUser Load (161.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 974ms (Views: 4.1ms | ActiveRecord: 260.7ms | Allocations: 973)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-04 16:52:43 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (28.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 315ms (Views: 4.4ms | ActiveRecord: 28.3ms | Allocations: 958)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-04 16:52:46 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (100.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 132ms (Views: 4.0ms | ActiveRecord: 100.3ms | Allocations: 831)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-04 16:53:06 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"andrewhollingworth", "password"=>"[FILTERED]", "authentication"=>{"username"=>"andrewhollingworth", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrewhollingworth"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 393ms (Views: 2.5ms | ActiveRecord: 1.4ms | Allocations: 909)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-04 16:59:12 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"andrewhollingworth", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"andrewhollingworth", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrewhollingworth"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 383ms (Views: 14.6ms | ActiveRecord: 2.9ms | Allocations: 997)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-04 16:59:23 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 377ms (Views: 0.8ms | ActiveRecord: 0.5ms | Allocations: 902)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-04 17:00:31 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (22.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 73ms (Views: 9.9ms | ActiveRecord: 22.0ms | Allocations: 834)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-04 17:00:54 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 18ms (Views: 1.8ms | ActiveRecord: 4.8ms | Allocations: 831)
+
+
+Started GET "/static/js/0.chunk.js" for ::1 at 2019-10-06 10:46:02 -0400
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/static/js/0.chunk.js"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/manifest.json" for ::1 at 2019-10-06 10:46:03 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/manifest.json"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-10-06 10:46:23 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/andrewhollingworth/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/andrewhollingworth/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 23.7ms | Allocations: 489)
+Completed 200 OK in 45ms (Views: 38.1ms | ActiveRecord: 0.0ms | Allocations: 2702)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 10:46:53 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 259)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 10:48:19 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 10:51:39 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:01:30 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 9ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:02:50 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:03:03 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 7.3ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:03:23 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 33ms (Views: 13.9ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:03:44 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:06:28 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 16ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:07:41 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 69ms (Views: 59.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:09:05 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:09:28 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 15ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:09:58 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 17ms (Views: 6.6ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:10:28 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 17ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:10:55 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:14:48 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 15ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:19:49 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 9ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:20:04 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:20:24 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 10ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:21:29 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 23ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:22:37 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 16ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:23:16 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 26ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:23:35 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 17ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:24:17 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 53ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:24:29 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 176ms (Views: 76.4ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:26:19 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 18ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:30:24 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 28ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:31:02 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 18ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:32:04 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 139ms (Views: 55.1ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:32:22 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 12ms (Views: 3.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:32:56 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:33:25 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 21ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:50:53 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:51:27 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 20ms (Views: 9.6ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:57:40 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:58:11 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:59:04 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 26ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 11:59:17 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started POST "/users" for ::1 at 2019-10-06 11:59:49 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"asdf@gmail.com"}}
+  [1m[35m (40.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (131.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "asdf@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Create (100.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "asdf"], ["email", "asdf@gmail.com"], ["password_digest", "$2a$12$fxm.BLXOACTTmlfOHWfkZO2jJMDihtfBMFtKfcX1bAL/pSNCZi83G"], ["created_at", "2019-10-06 15:59:52.153556"], ["updated_at", "2019-10-06 15:59:52.153556"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (43.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 201 Created in 1988ms (Views: 9.6ms | ActiveRecord: 788.6ms | Allocations: 9941)
+
+
+Started POST "/users" for ::1 at 2019-10-06 11:59:59 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"asdf@gmail.com"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "asdf@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (43.9ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 422 Unprocessable Entity in 500ms (Views: 1.0ms | ActiveRecord: 45.2ms | Allocations: 7081)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 12:00:21 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 12:00:32 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 12:00:51 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 12:01:28 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-06 12:01:34 -0400
+Processing by AuthenticationController#verify as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-06 12:01:39 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"asdf", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (37.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 516ms (Views: 4.0ms | ActiveRecord: 39.8ms | Allocations: 1180)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-06 12:01:45 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 401 Unauthorized in 369ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 688)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-06 12:01:49 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 401 Unauthorized in 421ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 684)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-06 12:01:53 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 401 Unauthorized in 361ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 674)
+
+
