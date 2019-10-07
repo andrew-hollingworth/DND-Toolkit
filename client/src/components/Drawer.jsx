@@ -108,7 +108,7 @@ export default function MiniDrawer(props) {
       >
         <Toolbar className='toolbar'>
           <Typography variant="h5" noWrap>
-            <Link className='nodesto' to='/'>Heward's Handy DM Screen</Link>
+            <Link className='eaves' to='/'>Heward's Handy DM Screen</Link>
           </Typography>
           {
             props.currentUser
@@ -157,22 +157,20 @@ export default function MiniDrawer(props) {
         {/* START OF MENU AND ICONS */}
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button key="Monsters">
+            <ListItemIcon><span class="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <ListItemText primary="Monsters" />
+          </ListItem>
+          <ListItem button key='Combat'>
+            <ListItemIcon><span class="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <ListItemText primary="Combat" />
+          </ListItem>
+          <ListItem button key="Game Mechanics">
+            <ListItemIcon><span class="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <ListItemText primary="Game Mechanics" />
+          </ListItem>
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
