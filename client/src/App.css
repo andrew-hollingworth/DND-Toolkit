@@ -2,7 +2,9 @@
   box-sizing: border-box;
 }
 
-
+.MuiToolbar-regular {
+  justify-content: space-between;
+}
 
 /* FONT FACE UPLOADS */
 /* CREATIVE COMMONS LICENSE */

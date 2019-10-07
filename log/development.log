@@ -521,3 +521,120 @@ Processing by AuthenticationController#login as HTML
 Completed 401 Unauthorized in 361ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 674)
 
 
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3260520062093897925)[0m
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateConditions (20191007135510)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (169.7ms)[0m  [1m[35mCREATE TABLE "conditions" ("id" bigserial primary key, "name" character varying, "description" text, "page" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191007135510"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3260520062093897925)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (45.1ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Blinded"], ["description", "A blinded creature can't see and automatically fails any ability check that requires sight.\n Attack rolls against the creature have advantage. and the creature's atlack ralls have disadvantage."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:37.906332"], ["updated_at", "2019-10-07 14:33:37.906332"]]
+  [1m[35m (36.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.4ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Charmed"], ["description", "A charmed creature can't attack the charmer or target the charmer with harmful abilities or magical effects.\n The charmer has advantage on any ability check to interact socially with the creature."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:37.998363"], ["updated_at", "2019-10-07 14:33:37.998363"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Deafened"], ["description", "A deafened creature can't hear and automatically fails\n    any ability check that requires hearing."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:38.004607"], ["updated_at", "2019-10-07 14:33:38.004607"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.5ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Frightened"], ["description", "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\n The creature can't willingly move closer to the source of its fear."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:38.009410"], ["updated_at", "2019-10-07 14:33:38.009410"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Grappled"], ["description", "A grappled creature's speed becomes O,and it can't benefit from any bonus to its speed.\n  The condition ends if the grappler is incapacitated (see the condition).\n The condition also ends if an effect removes the grappled creature fram the reach of the grappler or grappling effect, such as when a creature is hurled away by the Thunderwave spell."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:38.015258"], ["updated_at", "2019-10-07 14:33:38.015258"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.6ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Incapacitated"], ["description", "An incapacitated creature can't take actions or reactions."], ["page", "PHB 290"], ["created_at", "2019-10-07 14:33:38.040493"], ["updated_at", "2019-10-07 14:33:38.040493"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.4ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Invisible"], ["description", "An invisible creature is impossible to see without the aid of magic or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\n Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."], ["page", "PHB 291"], ["created_at", "2019-10-07 14:33:38.046815"], ["updated_at", "2019-10-07 14:33:38.046815"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Paralyzed"], ["description", "A paralyzed creature is Incapacitated (see the condition) and can't move or speak.\n The creature automatically fails Strength and Dexterity saving throws.\n Attack rolls against the creature have advantage.\n Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."], ["page", "PHB 291"], ["created_at", "2019-10-07 14:33:38.051297"], ["updated_at", "2019-10-07 14:33:38.051297"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Petrified"], ["description", "A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\n The creature is Incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\n Attack rolls against the creature have advantage.\n The creature automatically fails Strength and Dexterity saving throws.\n The creature has resistance to all damage.\n The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."], ["page", "PHB 291"], ["created_at", "2019-10-07 14:33:38.055392"], ["updated_at", "2019-10-07 14:33:38.055392"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.4ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Poisoned"], ["description", "A poisoned creature has disadvantage on attack rolls and ability checks."], ["page", "PHB 292"], ["created_at", "2019-10-07 14:33:38.059574"], ["updated_at", "2019-10-07 14:33:38.059574"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Prone"], ["description", "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition.\n The creature has disadvantage on attack rolls.\n An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."], ["page", "PHB 292"], ["created_at", "2019-10-07 14:33:38.065743"], ["updated_at", "2019-10-07 14:33:38.065743"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.3ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Restrained"], ["description", "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\n Attack rolls against the creature have advantage,\n    and the creature's attack rolls have disadvantage.\n The creature has disadvantage on Dexterity saving throws."], ["page", "PHB 292"], ["created_at", "2019-10-07 14:33:38.070411"], ["updated_at", "2019-10-07 14:33:38.070411"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.7ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Stunned"], ["description", "A stunned creature is Incapacitated (see the condition), can't move, and can speak only falteringly.\n The creature automatica11y fails Strength and Dexterity saving throws.\n Attack rolls against the creature have advantage."], ["page", "PHB 292"], ["created_at", "2019-10-07 14:33:38.074381"], ["updated_at", "2019-10-07 14:33:38.074381"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCondition Create (0.5ms)[0m  [1m[32mINSERT INTO "conditions" ("name", "description", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Unconscious"], ["description", "An unconscious creature is Incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\n The creature drops whatever it's holding and falls Prone.\n The creature automatically fails Strength and Dexterity saving throws.\n Attack rolls against the creature have advantage.\n Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."], ["page", "PHB 292"], ["created_at", "2019-10-07 14:33:38.080732"], ["updated_at", "2019-10-07 14:33:38.080732"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "conditions"[0m
+Started POST "/auth/login" for ::1 at 2019-10-07 11:14:39 -0400
+  [1m[35m (9.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"andrew", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"andrew", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (25.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrew"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 500 Internal Server Error in 280ms (ActiveRecord: 126.5ms | Allocations: 2897)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/authentication_controller.rb:7:in `login'
+Started POST "/auth/login" for ::1 at 2019-10-07 11:14:41 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"andrew", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"andrew", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (384.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "andrew"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 500 Internal Server Error in 393ms (ActiveRecord: 387.6ms | Allocations: 2222)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/authentication_controller.rb:7:in `login'
+Started POST "/auth/login" for ::1 at 2019-10-07 11:14:50 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>"", "authentication"=>{"username"=>"povertypan", "password"=>"[FILTERED]", "email"=>""}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "povertypan"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 401 Unauthorized in 481ms (Views: 0.7ms | ActiveRecord: 55.1ms | Allocations: 4865)
+
+
+Started POST "/users" for ::1 at 2019-10-07 11:15:26 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"asdf@asdf.com"}}
+  [1m[35m (30.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "asdf@asdf.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[35m (46.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 422 Unprocessable Entity in 534ms (Views: 4.7ms | ActiveRecord: 78.7ms | Allocations: 5349)
+
+
+Started POST "/auth/login" for ::1 at 2019-10-07 11:15:36 -0400
+Processing by AuthenticationController#login as HTML
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"asdf@asdf.com", "authentication"=>{"username"=>"asdf", "password"=>"[FILTERED]", "email"=>"asdf@asdf.com"}}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 377ms (Views: 2.7ms | ActiveRecord: 2.3ms | Allocations: 934)
+
+
+Started GET "/auth/verify" for ::1 at 2019-10-07 11:18:34 -0400
+Processing by AuthenticationController#verify as HTML
+  [1m[36mUser Load (87.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 231ms (Views: 8.0ms | ActiveRecord: 87.8ms | Allocations: 952)
+
+
