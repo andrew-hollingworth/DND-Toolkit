@@ -26,3 +26,8 @@ export const verifyUser = async () => {
   }
   return false
 }
+
+export const getConditions = async () => {
+  let conditions = await api.get('/conditions')
+  return conditions
+}
