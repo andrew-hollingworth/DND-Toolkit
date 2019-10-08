@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +17,8 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // My Additions
 import { Link, Route } from 'react-router-dom';
-import Account from './Account'
+import AccountMenu from './user/AccountMenu'
+import User from './user/User'
 import Conditions from './modules/Conditions'
 
 const drawerWidth = 240;
@@ -85,7 +86,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function MiniDrawer(props) {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -107,17 +107,7 @@ export default function MiniDrawer(props) {
           <Typography variant="h5" noWrap>
             <Link className='eaves' to='/'>Heward's Handy DM Screen</Link>
           </Typography>
-          {
-            props.currentUser
-              ?
-              <>
-                <p>Hello, {props.currentUser.username}</p>
-                <button onClick={props.handleLogout}>Logout</button>
-              </>
-              :
-              ''
-          }
-          <Account
+          <AccountMenu
             currentUser={props.currentUser}
             handleLogin={props.handleLogin}
             handleLogout={props.handleLogout}
@@ -156,6 +146,12 @@ export default function MiniDrawer(props) {
         {/* START OF MENU AND ICONS */}
         <Divider />
         <List>
+          <ListItem button key="View Screen">
+            <ListItemIcon>
+              <span class="iconify" data-icon="ic:round-library-books" data-inline="false" data-width="1.7em" data-height="1.7em"></span>
+            </ListItemIcon>
+            <ListItemText primary="View Screen" />
+          </ListItem>
           <ListItem button key="Monsters">
             <ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
             <ListItemText primary="Monsters" />
@@ -173,25 +169,20 @@ export default function MiniDrawer(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <Route path='/user' render={() => (
+          <User
+            currentUser={props.currentUser}
+            handleLogout={props.handleLogout}
+            handleUpdate={props.handleUpdate}
+            handleUserDelete={props.handleUserDelete}
+            updateFormData={props.updateFormData}
+            updateHandleChange={props.updateHandleChange} />
+        )} />
         <Route path='/mechanics' render={() => (
           <Conditions
             setConditionModule={props.setConditionModule}
             conditionModule={props.conditionModule} />
         )} />
-        {/* <Route path='/login' render={() => (
-          <Login
-            authFormData={props.authFormData}
-            authHandleChange={props.authHandleChange}
-            handleLogin={props.handleLogin}
-          />
-        )} />
-        <Route path='/signup' render={() => (
-          <Signup
-            authFormData={props.authFormData}
-            authHandleChange={props.authHandleChange}
-            handleSignup={props.handleSignup}
-          />
-        )} /> */}
       </main>
     </div >
   );

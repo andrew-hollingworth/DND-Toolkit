@@ -17,6 +17,11 @@ export const signupUser = async (signupData) => {
   return resp.data.user;
 }
 
+export const getUser = async (userId) => {
+  const resp = await api.get(`/user/${userId}`)
+  return resp.data.user;
+}
+
 export const verifyUser = async () => {
   const token = localStorage.getItem('authToken');
   if (token) {
@@ -27,7 +32,27 @@ export const verifyUser = async () => {
   return false
 }
 
+export const updateUser = async (updateData, userId) => {
+  const resp = await api.put(`/users/${userId}`, updateData);
+  return resp.data.user;
+}
+
+export const deleteUser = async (userId) => {
+  const resp = await api.delete(`/users/${userId}`)
+  return resp.data.user
+}
+
 export const getConditions = async () => {
   let conditions = await api.get('/conditions')
   return conditions
 }
+
+// export const addToScreen = async (params) => {
+
+//   return resp.data
+// }
+
+// export const deleteScores = async (scoreid) => {
+//   const resp = await axios.delete(`${BASE_URL}/highscores/score/${scoreid}`);
+//   return resp.data;
+// };

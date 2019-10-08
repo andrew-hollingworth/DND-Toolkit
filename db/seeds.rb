@@ -59,7 +59,7 @@ conditions = Condition.create!([
     "page": "PHB 292"
   },{
     "name": "Stunned",
-    "description": "A stunned creature is Incapacitated (see the condition), can't move, and can speak only falteringly.\n The creature automatica11y fails Strength and Dexterity saving throws.\n Attack rolls against the creature have advantage.",
+    "description": "A stunned creature is Incapacitated (see the condition), can't move, and can speak only falteringly.\n The creature automatically fails Strength and Dexterity saving throws.\n Attack rolls against the creature have advantage.",
     "page": "PHB 292"
   },{
     "name": "Unconscious",
