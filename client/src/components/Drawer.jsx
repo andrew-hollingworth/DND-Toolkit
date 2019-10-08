@@ -15,13 +15,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 // ICONS 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 // My Additions
 import { Link, Route } from 'react-router-dom';
-import Login from './Login'
-import Signup from './Signup'
+import Account from './Account'
+import Conditions from './modules/Conditions'
 
 const drawerWidth = 240;
 
@@ -120,11 +117,13 @@ export default function MiniDrawer(props) {
               :
               ''
           }
-          <Link to='/login'>
-            <IconButton>
-              <AccountCircleIcon />
-            </IconButton>
-          </Link>
+          <Account
+            currentUser={props.currentUser}
+            handleLogin={props.handleLogin}
+            handleLogout={props.handleLogout}
+            authFormData={props.authFormData}
+            authHandleChange={props.authHandleChange}
+            handleSignup={props.handleSignup} />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -158,15 +157,15 @@ export default function MiniDrawer(props) {
         <Divider />
         <List>
           <ListItem button key="Monsters">
-            <ListItemIcon><span class="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
             <ListItemText primary="Monsters" />
           </ListItem>
           <ListItem button key='Combat'>
-            <ListItemIcon><span class="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
             <ListItemText primary="Combat" />
           </ListItem>
           <ListItem button key="Game Mechanics">
-            <ListItemIcon><span class="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <Link to='/mechanics'><ListItemIcon><span className="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
             <ListItemText primary="Game Mechanics" />
           </ListItem>
         </List>
@@ -174,7 +173,12 @@ export default function MiniDrawer(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Route path='/login' render={() => (
+        <Route path='/mechanics' render={() => (
+          <Conditions
+            setConditionModule={props.setConditionModule}
+            conditionModule={props.conditionModule} />
+        )} />
+        {/* <Route path='/login' render={() => (
           <Login
             authFormData={props.authFormData}
             authHandleChange={props.authHandleChange}
@@ -187,7 +191,7 @@ export default function MiniDrawer(props) {
             authHandleChange={props.authHandleChange}
             handleSignup={props.handleSignup}
           />
-        )} />
+        )} /> */}
       </main>
     </div >
   );

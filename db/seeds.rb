@@ -68,5 +68,12 @@ conditions = Condition.create!([
   }
 ])
 
+user = User.create!({
+  "username": "mattMercer",
+  "email": "matt@critrole.com",
+  "password": "123456",
+  "image": "https://upload.wikimedia.org/wikipedia/commons/2/27/Matthew_Mercer_by_Gage_Skidmore.jpg"
+})
 
 p "#{Condition.count} conditions created!"
+p "#{User.count} users created!"

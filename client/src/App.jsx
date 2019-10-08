@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Drawer from './components/Drawer'
-import { loginUser, signupUser, verifyUser } from './services/api-helper'
+import { loginUser, signupUser, verifyUser, getConditions } from './services/api-helper'
 import './App.css';
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
     email: '',
   })
   const [currentUser, setCurrentUser] = useState(null);
+  const [conditions, setConditions] = useState(null)
 
   const authHandleChange = (e) => {
     const { name, value } = e.target
@@ -21,14 +22,18 @@ const App = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('handleLogin');
     const currentUser = await loginUser(authFormData);
     setCurrentUser(currentUser);
+    await console.log('current user', currentUser);
+
   }
 
   const handleSignup = async (e) => {
     e.preventDefault();
     const currentUser = await signupUser(authFormData);
-    setCurrentUser(currentUser);
+    await setCurrentUser(currentUser);
+    await handleVerify();
   }
 
   const handleLogout = () => {
@@ -43,6 +48,14 @@ const App = () => {
     }
   }
 
+  // GETTING MODULES
+  const conditionModule = async () => {
+    const conditions = await getConditions()
+    setConditions(conditions)
+    console.log(conditions);
+  }
+
+  // USEEFFECT
   useEffect(() => {
     handleVerify();
   }, [])
@@ -56,6 +69,8 @@ const App = () => {
         authFormData={authFormData}
         authHandleChange={authHandleChange}
         handleSignup={handleSignup}
+        setConditionModule={conditionModule}
+        conditionModule={conditions}
       />
     </div>
   )
