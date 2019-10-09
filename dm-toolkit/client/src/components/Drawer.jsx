@@ -15,11 +15,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 // ICONS 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import SubjectIcon from '@material-ui/icons/Subject';
 // My Additions
 import { Link, Route } from 'react-router-dom';
 import AccountMenu from './user/AccountMenu'
 import User from './user/User'
 import Conditions from './modules/Conditions'
+import CurrentScreen from './CurrentScreen'
 
 const drawerWidth = 240;
 
@@ -147,9 +149,9 @@ export default function MiniDrawer(props) {
         <Divider />
         <List>
           <ListItem button key="View Screen">
-            <ListItemIcon>
-              <span class="iconify" data-icon="ic:round-library-books" data-inline="false" data-width="1.7em" data-height="1.7em"></span>
-            </ListItemIcon>
+            <Link to='/screen'><ListItemIcon>
+              <SubjectIcon />
+            </ListItemIcon></Link>
             <ListItemText primary="View Screen" />
           </ListItem>
           <ListItem button key="Monsters">
@@ -159,6 +161,10 @@ export default function MiniDrawer(props) {
           <ListItem button key='Combat'>
             <ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
             <ListItemText primary="Combat" />
+          </ListItem>
+          <ListItem button key="Spells">
+            <ListItemIcon><span className="iconify" data-icon="fe:magic" data-inline="false" data-width="1.9em" data-height="1.9em"></span></ListItemIcon>
+            <ListItemText primary="Spells" />
           </ListItem>
           <ListItem button key="Game Mechanics">
             <Link to='/mechanics'><ListItemIcon><span className="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
@@ -176,10 +182,20 @@ export default function MiniDrawer(props) {
             handleUpdate={props.handleUpdate}
             handleUserDelete={props.handleUserDelete}
             updateFormData={props.updateFormData}
-            updateHandleChange={props.updateHandleChange} />
+            updateHandleChange={props.updateHandleChange}
+            handleScreenCreate={props.handleScreenCreate}
+            screenHandleChange={props.screenHandleChange}
+            newScreenData={props.newScreenData}
+            userScreens={props.userScreens}
+            handleCurrentScreenSelect={props.handleCurrentScreenSelect} />
         )} />
         <Route path='/mechanics' render={() => (
           <Conditions
+            setConditionModule={props.setConditionModule}
+            conditionModule={props.conditionModule} />
+        )} />
+        <Route path='/screen' render={() => (
+          <CurrentScreen
             setConditionModule={props.setConditionModule}
             conditionModule={props.conditionModule} />
         )} />

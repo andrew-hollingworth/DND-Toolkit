@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Drawer from './components/Drawer'
-import { loginUser, signupUser, verifyUser, getConditions, updateUser, deleteUser } from './services/api-helper'
+import {
+  loginUser, signupUser, verifyUser, updateUser, deleteUser,
+  getConditions,
+  createScreen, deleteScreen, getUserScreens, getOneScreen
+} from './services/api-helper'
 import './App.css';
 
 const App = () => {
@@ -14,8 +18,13 @@ const App = () => {
     email: '',
     image: '',
   })
+  const [newScreenData, setNewScreenData] = useState({
+    name: '',
+  })
   const [currentUser, setCurrentUser] = useState(null);
   const [conditions, setConditions] = useState(null)
+  const [currentScreen, setCurrentScreen] = useState(null);
+  const [userScreens, setUserScreens] = useState(null);
 
   const authHandleChange = (e) => {
     const { name, value } = e.target
@@ -74,8 +83,38 @@ const App = () => {
     const currentUser = await verifyUser()
     if (currentUser) {
       setCurrentUser(currentUser);
+      const allScreens = await getUserScreens(currentUser.id);
+      setUserScreens(allScreens);
     }
   }
+
+  // SCREEN RELATED FUNCTIONS
+  const handleScreenCreate = async (e) => {
+    e.preventDefault();
+    const user_id = currentUser.id
+    const newScreen = await createScreen(user_id, newScreenData);
+    setCurrentScreen(newScreen);
+    const allScreens = await getUserScreens(currentUser.id);
+    setUserScreens(allScreens);
+  }
+
+  const screenHandleChange = (e) => {
+    const { name, value } = e.target
+    setNewScreenData(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  const handleCurrentScreenSelect = async (id) => {
+    const newCurrentScreen = await getOneScreen(id);
+    setCurrentScreen(newCurrentScreen)
+  }
+
+  // const handleScreenDelete = async (e) => {
+  //   e.preventDefault();
+  //   await deleteScreen()
+  // }
 
   // GETTING MODULES
   const setConditionModule = async () => {
@@ -103,6 +142,11 @@ const App = () => {
         handleUserDelete={handleUserDelete}
         setConditionModule={setConditionModule}
         conditionModule={conditions}
+        handleScreenCreate={handleScreenCreate}
+        screenHandleChange={screenHandleChange}
+        newScreenData={newScreenData}
+        userScreens={userScreens}
+        handleCurrentScreenSelect={handleCurrentScreenSelect}
       />
     </div>
   )

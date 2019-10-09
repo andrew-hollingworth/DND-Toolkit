@@ -27,7 +27,7 @@ const Conditions = (props) => {
   // USEEFFECT
   useEffect(() => {
     props.setConditionModule();
-  }, [props])
+  })
 
   const conditions = props.conditionModule && props.conditionModule.data.map((condition, index) => {
     return <>

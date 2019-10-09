@@ -47,12 +47,24 @@ export const getConditions = async () => {
   return conditions
 }
 
-// export const addToScreen = async (params) => {
+// //////////// SCREEN FUNCTIONS /////////////////////
 
-//   return resp.data
-// }
+export const createScreen = async (userId, name) => {
+  let screen = await api.post(`/screens/users/${userId}`, name)
+  return screen
+}
 
-// export const deleteScores = async (scoreid) => {
-//   const resp = await axios.delete(`${BASE_URL}/highscores/score/${scoreid}`);
-//   return resp.data;
-// };
+export const getUserScreens = async (userId) => {
+  let userScreens = await api.get(`/screens/users/${userId}`)
+  return userScreens
+}
+
+export const getOneScreen = async (id) => {
+  let oneScreen = await api.get(`/screens/${id}`)
+  return oneScreen
+}
+
+export const deleteScreen = async (screenId) => {
+  const resp = await api.delete(`/screens/${screenId}`)
+  return resp.data
+}
