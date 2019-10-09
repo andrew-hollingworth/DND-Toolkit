@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import Modal from '@material-ui/core/Modal';
+import Divider from '@material-ui/core/Divider';
+import UserScreens from './UserScreens'
+
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -38,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  textField: {
+    margin: theme.spacing(1)
+  }
 }));
 
 const User = (props) => {
@@ -45,6 +51,7 @@ const User = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const { username, email, image } = props.updateFormData;
+  const { name } = props.newScreenData
 
   const handleOpen = () => {
     setOpen(true);
@@ -86,12 +93,28 @@ const User = (props) => {
             className={classes.button}>
             Delete User
           </Button>
-
-          <Button
-            variant="contained"
-            className={classes.button}>
-            <LibraryAddIcon /> New Screen
+          <Divider />
+          <form className={classes.container} noValidate autoComplete="off">
+            <TextField
+              className={classes.textField}
+              label='Screen Name'
+              name='name'
+              required
+              value={name}
+              onChange={props.screenHandleChange}
+              type='text'
+              variant="outlined"
+            />
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={props.handleScreenCreate}>
+              <PlaylistAddIcon />  New Screen
           </Button>
+          </form>
+          {props.userScreens && <UserScreens
+            userScreens={props.userScreens}
+            handleCurrentScreenSelect={props.handleCurrentScreenSelect} />}
           {/* ================THIS IS THE MODAL ================*/}
           <Modal
             aria-labelledby="simple-modal-title"
@@ -103,7 +126,6 @@ const User = (props) => {
               <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                   className={classes.textField}
-                  id='margin-normal'
                   label='Username'
                   name='username'
                   onChange={props.updateHandleChange}
@@ -114,7 +136,6 @@ const User = (props) => {
                 />
                 <TextField
                   className={classes.textField}
-                  id="margin-normal"
                   label='Profile Image'
                   name='image'
                   onChange={props.updateHandleChange}
@@ -125,7 +146,6 @@ const User = (props) => {
                 />
                 <TextField
                   className={classes.textField}
-                  id="margin-normal"
                   label='Email'
                   name='email'
                   onChange={props.updateHandleChange}
