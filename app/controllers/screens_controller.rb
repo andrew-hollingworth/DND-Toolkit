@@ -16,9 +16,22 @@ class ScreensController < ApplicationController
 
     
     def one_screen
-      @screen = Screen.where(id: params[:id])
-    
-      render json: @screen
+      @screen = Screen.find(params[:id])
+      render json: @screen.with_associations
+    end
+
+    # Put /screens/1
+    def update_screen
+      @screen = Screen.find(params[:id])
+      if params[:screen][:conditions]
+        @conditions = Condition.find(params[:screen][:conditions])
+        @screen.conditions = @conditions
+      end
+      if params[:screen][:rests]
+        @rests = Rest.find(params[:screen][:rests])
+        @screen.rests = @rests
+      end
+      render json: @screen.with_associations
     end
 
     # POST /screens/users/1
@@ -40,7 +53,7 @@ class ScreensController < ApplicationController
 
     private 
     def screen_params
-      params.permit(:id, :name)
+      params.require(:screen).permit(:id, :name, :conditions, :rests)
     end
 
     def user_id

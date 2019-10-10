@@ -44,27 +44,37 @@ export const deleteUser = async (userId) => {
 
 export const getConditions = async () => {
   let conditions = await api.get('/conditions')
-  return conditions
+  return conditions.data
+}
+
+export const getRests = async () => {
+  let rests = await api.get('/rests')
+  return rests.data
 }
 
 // //////////// SCREEN FUNCTIONS /////////////////////
 
 export const createScreen = async (userId, name) => {
   let screen = await api.post(`/screens/users/${userId}`, name)
-  return screen
+  return screen.data
 }
 
 export const getUserScreens = async (userId) => {
   let userScreens = await api.get(`/screens/users/${userId}`)
-  return userScreens
+  return userScreens.data
 }
 
 export const getOneScreen = async (id) => {
   let oneScreen = await api.get(`/screens/${id}`)
-  return oneScreen
+  return oneScreen.data
 }
 
 export const deleteScreen = async (screenId) => {
   const resp = await api.delete(`/screens/${screenId}`)
+  return resp.data
+}
+
+export const updateScreen = async (id, currentScreen) => {
+  const resp = await api.put(`/screens/${id}`, { screen: currentScreen })
   return resp.data
 }

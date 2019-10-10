@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rests
   resources :conditions
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
@@ -15,4 +16,6 @@ Rails.application.routes.draw do
   post '/screens/users/:id', to: 'screens#create'
   # DELETE SCREEN BY SCREEN ID
   delete '/screens/:id', to: 'screens#destroy'
+
+  put '/screens/:id', to: 'screens#update_screen'
 end

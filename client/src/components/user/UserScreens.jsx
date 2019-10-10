@@ -26,7 +26,7 @@ const UserScreens = (props) => {
     props.handleCurrentScreenSelect(id);
   };
 
-  const screenList = props.userScreens.data.map((screen, index) => {
+  const screenList = props.userScreens.map((screen, index) => {
     return <ListItem
       key={screen.id}
       button

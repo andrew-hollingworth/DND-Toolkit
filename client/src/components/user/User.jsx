@@ -130,7 +130,7 @@ const User = (props) => {
                   name='username'
                   onChange={props.updateHandleChange}
                   required
-                  type='text'
+                  type='username'
                   value={username}
                   variant="outlined"
                 />
@@ -150,7 +150,7 @@ const User = (props) => {
                   name='email'
                   onChange={props.updateHandleChange}
                   required
-                  type='text'
+                  type='email'
                   value={email}
                   variant="outlined"
                 />

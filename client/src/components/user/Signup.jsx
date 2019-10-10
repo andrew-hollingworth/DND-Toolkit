@@ -26,28 +26,31 @@ const Signup = (props) => {
   const { username, password, email } = props.authFormData
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.container} noValidate autoComplete="on">
       <TextField
+        autoComplete='email'
         className={classes.textField}
         label='Email'
         name='email'
         onChange={props.authHandleChange}
         required
-        type='text'
+        type='email'
         value={email}
         variant="outlined"
       />
       <TextField
+        autoComplete='username'
         className={classes.textField}
         label='Username'
         name='username'
         onChange={props.authHandleChange}
         required
-        type='text'
+        type='username'
         value={username}
         variant="outlined"
       />
       <TextField
+        autoComplete='new-password'
         className={classes.textField}
         label='Password'
         name='password'

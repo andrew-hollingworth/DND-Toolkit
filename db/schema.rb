@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_161739) do
+ActiveRecord::Schema.define(version: 2019_10_10_190557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 2019_10_07_161739) do
   create_table "conditions_screens", id: false, force: :cascade do |t|
     t.bigint "screen_id", null: false
     t.bigint "condition_id", null: false
+  end
+
+  create_table "rests", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "page"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rests_screens", id: false, force: :cascade do |t|
+    t.bigint "rest_id", null: false
+    t.bigint "screen_id", null: false
   end
 
   create_table "screens", force: :cascade do |t|

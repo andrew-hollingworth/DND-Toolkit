@@ -5,6 +5,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import ButtonBase from '@material-ui/core/ButtonBase';
+
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
@@ -80,20 +82,20 @@ const MenuPaper = (props) => {
               <Tab label='Welcome!' {...a11yProps(0)} />
             </Tabs>
           </AppBar>
-          <Grid
-            className={classes.paper}>
-            <h2>{props.currentUser.username}</h2>
-            <Link to='/user'>
-              <IconButton aria-controls="simple-menu" aria-haspopup="true">
-                <AccountCircleIcon />
-              </IconButton>
-            </Link>
-            <Button
-              onClick={props.handleLogout}
-              variant="contained">
-              Logout
+          <Link to='/user'>
+            <Grid
+              className={classes.paper}>
+              <h2>{props.currentUser.username}</h2>
+              <h2><AccountCircleIcon /></h2>
+              {/* <IconButton aria-controls="simple-menu" aria-haspopup="true"> */}
+              {/* </IconButton> */}
+              <Button
+                onClick={props.handleLogout}
+                variant="contained">
+                Logout
             </Button>
-          </Grid>
+            </Grid>
+          </Link>
         </>
         :
         <>
