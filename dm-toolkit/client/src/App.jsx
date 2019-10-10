@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Drawer from './components/Drawer'
 import {
   loginUser, signupUser, verifyUser, updateUser, deleteUser,
-  getConditions,
-  createScreen, getUserScreens, getOneScreen
+  getConditions, getRests,
+  createScreen, getUserScreens, getOneScreen, updateScreen
 } from './services/api-helper'
 import './App.css';
 
@@ -22,8 +22,10 @@ const App = () => {
     name: '',
   })
   const [currentUser, setCurrentUser] = useState(null);
-  const [conditions, setConditions] = useState(null)
+  const [conditions, setConditions] = useState(null);
+  const [rest, setRest] = useState(null);
   const [currentScreen, setCurrentScreen] = useState({});
+  const [batchScreen, setBatchScreen] = useState({})
   const [userScreens, setUserScreens] = useState(null);
 
   const authHandleChange = (e) => {
@@ -106,24 +108,28 @@ const App = () => {
     }))
   }
 
+  const handleUpdateScreen = (name, value) => {
+    if (batchScreen[name]) {
+      setBatchScreen(prevState => ({
+        ...prevState,
+        [name]: [...prevState[name], value]
+      }))
+    } else {
+      setBatchScreen(prevState => ({
+        ...prevState,
+        [name]: [value]
+      }))
+    }
+  }
+
   const handleCurrentScreenSelect = async (id) => {
     const newCurrentScreen = await getOneScreen(id);
     setCurrentScreen(newCurrentScreen)
   }
 
-  // /////////////////////////////////////////////////////
-  const handleUpdateScreen = (type, id) => {
-    const name = type
-    const value = id
-    if (currentScreen[name]) {
-      setCurrentScreen(prevState => ({
-        [name]: [...prevState[name], value]
-      }))
-    } else {
-      setCurrentScreen(prevState => ({
-        [name]: [value]
-      }))
-    }
+  const saveScreen = async () => {
+    const updatedScreen = await updateScreen(currentScreen.id, batchScreen)
+    setCurrentScreen(updatedScreen)
   }
 
   // const handleScreenDelete = async (e) => {
@@ -135,6 +141,11 @@ const App = () => {
   const setConditionModule = async () => {
     const conditions = await getConditions();
     setConditions(conditions);
+  }
+
+  const setRestModule = async () => {
+    const rests = await getRests();
+    setRest(rests);
   }
 
   // USEEFFECT
@@ -157,6 +168,8 @@ const App = () => {
         handleUserDelete={handleUserDelete}
         setConditionModule={setConditionModule}
         conditionModule={conditions}
+        setRestModule={setRestModule}
+        restModule={rest}
         handleScreenCreate={handleScreenCreate}
         screenHandleChange={screenHandleChange}
         newScreenData={newScreenData}
@@ -164,6 +177,7 @@ const App = () => {
         handleCurrentScreenSelect={handleCurrentScreenSelect}
         currentScreen={currentScreen}
         handleUpdateScreen={handleUpdateScreen}
+        saveScreen={saveScreen}
       />
     </div>
   )

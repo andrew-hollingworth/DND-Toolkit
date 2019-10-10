@@ -26,8 +26,9 @@ const Login = (props) => {
 
   const { username, password } = props.authFormData
   return (
-    <form onSubmit={props.handleLogin} className={classes.container} noValidate autoComplete="off">
+    <form onSubmit={props.handleLogin} className={classes.container} noValidate autoComplete="on">
       <TextField
+        autoComplete='username'
         className={classes.textField}
         label='Username'
         name='username'
@@ -38,6 +39,7 @@ const Login = (props) => {
         variant="outlined"
       />
       <TextField
+        autoComplete='password'
         className={classes.textField}
         label='Password'
         name='password'

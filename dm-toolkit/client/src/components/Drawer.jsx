@@ -193,12 +193,18 @@ export default function MiniDrawer(props) {
           <Conditions
             setConditionModule={props.setConditionModule}
             conditionModule={props.conditionModule}
-            handleUpdateScreen={props.handleUpdateScreen} />
+            handleUpdateScreen={props.handleUpdateScreen}
+            setRestModule={props.setRestModule}
+            restModule={props.restModule}
+            saveScreen={props.saveScreen} />
         )} />
         <Route path='/screen' render={() => (
           <CurrentScreen
+            handleCurrentScreenSelect={props.handleCurrentScreenSelect}
             setConditionModule={props.setConditionModule}
+            setRestModule={props.setRestModule}
             conditionModule={props.conditionModule}
+            restModule={props.restModule}
             currentScreen={props.currentScreen} />
         )} />
       </main>
