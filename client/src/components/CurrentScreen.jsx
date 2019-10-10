@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -25,9 +25,9 @@ const CurrentScreen = (props) => {
   const classes = useStyles();
 
   // USEEFFECT
-  useEffect(() => {
-    props.setConditionModule();
-  }, [props])
+  // useEffect(() => {
+  //   props.setConditionModule();
+  // }, [])
 
   const conditions = props.conditionModule && props.conditionModule.data.map((condition, index) => {
     return <>
@@ -48,7 +48,7 @@ const CurrentScreen = (props) => {
 
   return (
     <>
-      <h1 className='eaves'>Screen Name XXXX</h1>
+      <h1 className='eaves'>{props.currentScreen && props.currentScreen.data[0].name}</h1>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">

@@ -29,7 +29,6 @@ const Login = (props) => {
     <form onSubmit={props.handleLogin} className={classes.container} noValidate autoComplete="off">
       <TextField
         className={classes.textField}
-        id='margin-normal'
         label='Username'
         name='username'
         onChange={props.authHandleChange}
@@ -40,7 +39,6 @@ const Login = (props) => {
       />
       <TextField
         className={classes.textField}
-        id="margin-normal"
         label='Password'
         name='password'
         onChange={props.authHandleChange}
