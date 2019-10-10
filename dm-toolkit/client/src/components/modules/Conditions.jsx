@@ -26,8 +26,8 @@ const Conditions = (props) => {
 
   // USEEFFECT
   useEffect(() => {
-    props.setConditionModule();
-  })
+    props.setConditionModule()
+  }, [])
 
   const conditions = props.conditionModule && props.conditionModule.data.map((condition, index) => {
     return <>
@@ -37,8 +37,11 @@ const Conditions = (props) => {
       <Typography variant="body2" component="p">
         <span className='scaly'>{condition.description}</span>
       </Typography>
+      <Typography variant="body2" component="p">
+        <span className='scaly'>{condition.page}</span>
+      </Typography>
       <CardActions className={classes.cardAction}>
-        <Fab variant="extended" aria-label="add-to-screen" className={classes.fab}>
+        <Fab variant="extended" aria-label="add-to-screen" className={classes.fab} onClick={() => props.handleUpdateScreen("conditions", condition.id)}>
           <AddIcon className={classes.extendedIcon} />
           Add to Screen
           </Fab>

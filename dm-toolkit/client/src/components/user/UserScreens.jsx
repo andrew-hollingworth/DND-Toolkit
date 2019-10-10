@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import SubjectIcon from '@material-ui/icons/Subject';
 
 
@@ -20,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const UserScreens = (props) => {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleListItemClick = (event, index, id) => {
     setSelectedIndex(index);

@@ -3,7 +3,7 @@ import Drawer from './components/Drawer'
 import {
   loginUser, signupUser, verifyUser, updateUser, deleteUser,
   getConditions,
-  createScreen, deleteScreen, getUserScreens, getOneScreen
+  createScreen, getUserScreens, getOneScreen
 } from './services/api-helper'
 import './App.css';
 
@@ -23,7 +23,7 @@ const App = () => {
   })
   const [currentUser, setCurrentUser] = useState(null);
   const [conditions, setConditions] = useState(null)
-  const [currentScreen, setCurrentScreen] = useState(null);
+  const [currentScreen, setCurrentScreen] = useState({});
   const [userScreens, setUserScreens] = useState(null);
 
   const authHandleChange = (e) => {
@@ -111,6 +111,21 @@ const App = () => {
     setCurrentScreen(newCurrentScreen)
   }
 
+  // /////////////////////////////////////////////////////
+  const handleUpdateScreen = (type, id) => {
+    const name = type
+    const value = id
+    if (currentScreen[name]) {
+      setCurrentScreen(prevState => ({
+        [name]: [...prevState[name], value]
+      }))
+    } else {
+      setCurrentScreen(prevState => ({
+        [name]: [value]
+      }))
+    }
+  }
+
   // const handleScreenDelete = async (e) => {
   //   e.preventDefault();
   //   await deleteScreen()
@@ -147,6 +162,8 @@ const App = () => {
         newScreenData={newScreenData}
         userScreens={userScreens}
         handleCurrentScreenSelect={handleCurrentScreenSelect}
+        currentScreen={currentScreen}
+        handleUpdateScreen={handleUpdateScreen}
       />
     </div>
   )

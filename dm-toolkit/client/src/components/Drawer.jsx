@@ -192,12 +192,14 @@ export default function MiniDrawer(props) {
         <Route path='/mechanics' render={() => (
           <Conditions
             setConditionModule={props.setConditionModule}
-            conditionModule={props.conditionModule} />
+            conditionModule={props.conditionModule}
+            handleUpdateScreen={props.handleUpdateScreen} />
         )} />
         <Route path='/screen' render={() => (
           <CurrentScreen
             setConditionModule={props.setConditionModule}
-            conditionModule={props.conditionModule} />
+            conditionModule={props.conditionModule}
+            currentScreen={props.currentScreen} />
         )} />
       </main>
     </div >
