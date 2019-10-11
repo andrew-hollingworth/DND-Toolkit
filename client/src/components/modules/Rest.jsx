@@ -5,7 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import SaveIcon from '@material-ui/icons/Save';
+import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
@@ -41,9 +41,14 @@ const Rest = (props) => {
       </Typography>
       <CardActions className={classes.cardAction}>
         <Fab variant="extended" aria-label="add-to-screen" onClick={() => props.handleUpdateScreen("rests", rest.id)}>
-          <AddIcon className={classes.extendedIcon} />
-          Add to Screen
-          </Fab>
+          {props.batchScreen.rests && props.batchScreen.rests.includes(rest.id) ?
+            <> <RemoveIcon className={classes.extendedIcon} />
+              Remove from Screen
+            </>
+            : <><AddIcon className={classes.extendedIcon} />
+              Add to Screen
+          </>}
+        </Fab>
       </CardActions>
     </React.Fragment>
   })

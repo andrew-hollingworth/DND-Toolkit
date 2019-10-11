@@ -87,6 +87,9 @@ const App = () => {
       setCurrentUser(currentUser);
       const allScreens = await getUserScreens(currentUser.id);
       setUserScreens(allScreens);
+      if (allScreens) {
+        await handleCurrentScreenSelect(1)
+      }
     }
   }
 
@@ -109,10 +112,18 @@ const App = () => {
   }
 
   const handleUpdateScreen = (name, value) => {
-    if (batchScreen[name]) {
+    if (batchScreen[name] && !batchScreen[name].includes(value)) {
       setBatchScreen(prevState => ({
         ...prevState,
         [name]: [...prevState[name], value]
+      }))
+    } else if (batchScreen[name] && batchScreen[name].includes(value)) {
+      const removed = batchScreen[name].filter((id) => {
+        return id !== value
+      })
+      setBatchScreen(prevState => ({
+        ...prevState,
+        [name]: [...removed]
       }))
     } else {
       setBatchScreen(prevState => ({
@@ -125,6 +136,13 @@ const App = () => {
   const handleCurrentScreenSelect = async (id) => {
     const newCurrentScreen = await getOneScreen(id);
     setCurrentScreen(newCurrentScreen)
+    newCurrentScreen.modules.forEach((module) => {
+      const name = Object.keys(module)[0]
+      module[name].forEach((each) => {
+        handleUpdateScreen(name, each.id)
+      })
+    }
+    )
   }
 
   const saveScreen = async () => {
@@ -178,6 +196,7 @@ const App = () => {
         currentScreen={currentScreen}
         handleUpdateScreen={handleUpdateScreen}
         saveScreen={saveScreen}
+        batchScreen={batchScreen}
       />
     </div>
   )

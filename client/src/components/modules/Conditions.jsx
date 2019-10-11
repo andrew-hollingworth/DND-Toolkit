@@ -5,26 +5,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import SaveIcon from '@material-ui/icons/Save';
+import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
 import Rest from './Rest'
 
 const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  fab: {
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    position: 'fixed'
   },
 }));
 
@@ -50,9 +37,14 @@ const Conditions = (props) => {
       </Typography>
       <CardActions className={classes.cardAction}>
         <Fab variant="extended" aria-label="add-to-screen" onClick={() => props.handleUpdateScreen("conditions", condition.id)}>
-          <AddIcon className={classes.extendedIcon} />
-          Add to Screen
-          </Fab>
+          {props.batchScreen.conditions && props.batchScreen.conditions.includes(condition.id) ?
+            <> <RemoveIcon className={classes.extendedIcon} />
+              Remove from Screen
+            </>
+            : <><AddIcon className={classes.extendedIcon} />
+              Add to Screen
+          </>}
+        </Fab>
       </CardActions>
     </div>
   })
@@ -71,10 +63,8 @@ const Conditions = (props) => {
       <Rest
         restModule={props.restModule}
         setRestModule={props.setRestModule}
-        handleUpdateScreen={props.handleUpdateScreen} />
-      <Fab aria-label='save button' className={classes.fab} onClick={props.saveScreen} >
-        <SaveIcon />
-      </Fab>
+        handleUpdateScreen={props.handleUpdateScreen}
+        batchScreen={props.batchScreen} />
     </>
   )
 }
