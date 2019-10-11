@@ -221,7 +221,8 @@ export default function MiniDrawer(props) {
             screenHandleChange={props.screenHandleChange}
             newScreenData={props.newScreenData}
             userScreens={props.userScreens}
-            handleCurrentScreenSelect={props.handleCurrentScreenSelect} />
+            handleCurrentScreenSelect={props.handleCurrentScreenSelect}
+            toggleDarkTheme={props.toggleDarkTheme} />
         )} />
         <Route path='/mechanics' render={() => (
           <Conditions

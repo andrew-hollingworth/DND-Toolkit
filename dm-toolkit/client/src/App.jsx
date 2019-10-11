@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Drawer from './components/Drawer'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { amber } from '@material-ui/core/colors';
 import {
   loginUser, signupUser, verifyUser, updateUser, deleteUser,
   getConditions, getRests,
@@ -7,7 +9,7 @@ import {
 } from './services/api-helper'
 import './App.css';
 
-const App = () => {
+const App = (props) => {
   const [authFormData, setAuthFormData] = useState({
     username: '',
     password: '',
@@ -166,39 +168,75 @@ const App = () => {
     setRest(rests);
   }
 
+  // THEMING
+  // https://codesandbox.io/s/wz9r8330p7?from-embed
+  const [theme, setTheme] = useState({
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#8e0600',
+      },
+      secondary: {
+        main: amber[400],
+        dark: amber[600],
+      }
+    },
+  });
+
+  const toggleDarkTheme = () => {
+    let newPaletteType = theme.palette.type === "light" ? "dark" : "light";
+    setTheme({
+      palette: {
+        type: newPaletteType,
+        primary: {
+          main: '#8e0600',
+        },
+        secondary: {
+          main: amber[400],
+          dark: amber[600],
+        }
+      }
+    });
+  };
+
+  const muiTheme = createMuiTheme(theme);
+
   // USEEFFECT
   useEffect(() => {
     handleVerify();
   }, [])
 
   return (
-    <div>
-      <Drawer
-        currentUser={currentUser}
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        authFormData={authFormData}
-        authHandleChange={authHandleChange}
-        updateFormData={updateFormData}
-        updateHandleChange={updateHandleChange}
-        handleUpdate={handleUpdate}
-        handleSignup={handleSignup}
-        handleUserDelete={handleUserDelete}
-        setConditionModule={setConditionModule}
-        conditionModule={conditions}
-        setRestModule={setRestModule}
-        restModule={rest}
-        handleScreenCreate={handleScreenCreate}
-        screenHandleChange={screenHandleChange}
-        newScreenData={newScreenData}
-        userScreens={userScreens}
-        handleCurrentScreenSelect={handleCurrentScreenSelect}
-        currentScreen={currentScreen}
-        handleUpdateScreen={handleUpdateScreen}
-        saveScreen={saveScreen}
-        batchScreen={batchScreen}
-      />
-    </div>
+    <MuiThemeProvider theme={muiTheme}>
+      <div>
+        <Drawer
+          currentUser={currentUser}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          authFormData={authFormData}
+          authHandleChange={authHandleChange}
+          updateFormData={updateFormData}
+          updateHandleChange={updateHandleChange}
+          handleUpdate={handleUpdate}
+          handleSignup={handleSignup}
+          handleUserDelete={handleUserDelete}
+          setConditionModule={setConditionModule}
+          conditionModule={conditions}
+          setRestModule={setRestModule}
+          restModule={rest}
+          handleScreenCreate={handleScreenCreate}
+          screenHandleChange={screenHandleChange}
+          newScreenData={newScreenData}
+          userScreens={userScreens}
+          handleCurrentScreenSelect={handleCurrentScreenSelect}
+          currentScreen={currentScreen}
+          handleUpdateScreen={handleUpdateScreen}
+          saveScreen={saveScreen}
+          batchScreen={batchScreen}
+          toggleDarkTheme={toggleDarkTheme}
+        />
+      </div>
+    </MuiThemeProvider>
   )
 }
 
