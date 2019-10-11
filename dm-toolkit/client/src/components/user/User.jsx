@@ -6,6 +6,7 @@ import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import Modal from '@material-ui/core/Modal';
 import Divider from '@material-ui/core/Divider';
 import UserScreens from './UserScreens'
+import Switch from '@material-ui/core/Switch';
 
 
 function rand() {
@@ -59,6 +60,15 @@ const User = (props) => {
   const [open, setOpen] = React.useState(false);
   const { username, email, image } = props.updateFormData;
   const { name } = props.newScreenData
+  const [typeSwitch, setTypeSwitch] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  });
+
+  const typeHandleChange = name => event => {
+    setTypeSwitch({ ...typeSwitch, [name]: event.target.checked });
+    props.toggleDarkTheme();
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -80,6 +90,13 @@ const User = (props) => {
           <div className={classes.welcome}>
             <h1 className='scaly-b'>Welcome, {props.currentUser.username}</h1>
             <span>
+              <Switch
+                checked={typeSwitch.checkedB}
+                onChange={typeHandleChange('checkedB')}
+                value="checkedB"
+                color="primary"
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
               <Button
                 onClick={handleOpen}
                 variant="contained"
