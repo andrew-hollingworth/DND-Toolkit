@@ -5,9 +5,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import ButtonBase from '@material-ui/core/ButtonBase';
-
-import IconButton from '@material-ui/core/IconButton';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -56,6 +53,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  userLink: {
+    textDecoration: 'none',
+  }
 }));
 
 const MenuPaper = (props) => {
@@ -82,7 +82,7 @@ const MenuPaper = (props) => {
               <Tab label='Welcome!' {...a11yProps(0)} />
             </Tabs>
           </AppBar>
-          <Link to='/user'>
+          <Link className={classes.userLink} to='/user'>
             <Grid
               className={classes.paper}>
               <h2>{props.currentUser.username}</h2>

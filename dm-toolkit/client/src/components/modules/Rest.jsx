@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 const Rest = (props) => {
   const classes = useStyles();
-  const theme = useTheme();
 
   // USEEFFECT
   useEffect(() => {
