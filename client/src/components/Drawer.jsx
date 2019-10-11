@@ -8,7 +8,6 @@ import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,17 +17,22 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SubjectIcon from '@material-ui/icons/Subject';
 import SaveIcon from '@material-ui/icons/Save';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // My Additions
 import { Link, Route } from 'react-router-dom';
 import AccountMenu from './user/AccountMenu'
 import User from './user/User'
 import Conditions from './modules/Conditions'
 import CurrentScreen from './CurrentScreen'
+import Combat from './modules/Combat'
+import Spells from './modules/Spells'
+import Monsters from './modules/Monsters'
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
+    fontFamily: 'Scaly Sans',
     display: 'flex',
   },
   appBar: {
@@ -55,6 +59,7 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    justifyContent: 'space-around',
     whiteSpace: 'nowrap',
   },
   drawerOpen: {
@@ -91,6 +96,13 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2),
     position: 'fixed'
   },
+  home: {
+    textDecoration: 'none',
+    fontFamily: 'Mr Eaves Small Caps',
+    fontSize: '1.5em',
+    color: '#ffffff'
+  }
+
 }));
 
 export default function MiniDrawer(props) {
@@ -114,7 +126,9 @@ export default function MiniDrawer(props) {
       >
         <Toolbar className='toolbar'>
           <Typography variant="h5" noWrap>
-            <Link className='eaves' to='/'>Heward's Handy DM Screen</Link>
+            <Link className={classes.home} to='/'>
+              Heward's Handy DM Screen
+            </Link>
           </Typography>
           <AccountMenu
             currentUser={props.currentUser}
@@ -141,17 +155,21 @@ export default function MiniDrawer(props) {
       >
         <div className={classes.toolbar} />
         {/* START OF DRAWER, OPEN/CLOSE MENU BUTTONS */}
-        <IconButton onClick={handleDrawerOpen}
+        <ListItem button onClick={handleDrawerOpen}
           className={clsx({
             [classes.hide]: open,
           })}>
-          <ArrowForwardIcon />
-        </IconButton>
-        <IconButton onClick={handleDrawerClose} className={clsx({
+          <ListItemIcon>
+            <ArrowForwardIcon />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button onClick={handleDrawerClose} className={clsx({
           [classes.hide]: !open,
         })}>
-          <ArrowBackIcon />
-        </IconButton>
+          <ListItemIcon className={classes.arrows}>
+            <ArrowBackIcon />
+          </ListItemIcon>
+        </ListItem>
         {/* START OF MENU AND ICONS */}
         <Divider />
         <List>
@@ -162,20 +180,29 @@ export default function MiniDrawer(props) {
             <ListItemText primary="View Screen" />
           </ListItem>
           <ListItem button key="Monsters">
-            <ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <Link to='/monsters'><ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
             <ListItemText primary="Monsters" />
           </ListItem>
           <ListItem button key='Combat'>
-            <ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+            <Link to='/combat'><ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
             <ListItemText primary="Combat" />
           </ListItem>
           <ListItem button key="Spells">
-            <ListItemIcon><span className="iconify" data-icon="fe:magic" data-inline="false" data-width="1.9em" data-height="1.9em"></span></ListItemIcon>
+            <Link to='/spells'><ListItemIcon><span className="iconify" data-icon="fe:magic" data-inline="false" data-width="1.9em" data-height="1.9em"></span></ListItemIcon></Link>
             <ListItemText primary="Spells" />
           </ListItem>
           <ListItem button key="Game Mechanics">
             <Link to='/mechanics'><ListItemIcon><span className="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
             <ListItemText primary="Game Mechanics" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button key="View Screen">
+            <Link to='/user'><ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon></Link>
+            <ListItemText primary="User Profile" />
           </ListItem>
         </List>
 
@@ -217,8 +244,45 @@ export default function MiniDrawer(props) {
             batchScreen={props.batchScreen}
             handleUpdateScreen={props.handleUpdateScreen} />
         )} />
+        <Route path='/combat' render={() => (
+          <Combat
+            setConditionModule={props.setConditionModule}
+            conditionModule={props.conditionModule}
+            handleUpdateScreen={props.handleUpdateScreen}
+            setRestModule={props.setRestModule}
+            restModule={props.restModule}
+            saveScreen={props.saveScreen}
+            batchScreen={props.batchScreen} />
+        )} />
+        <Route path='/spells' render={() => (
+          <Spells
+            setConditionModule={props.setConditionModule}
+            conditionModule={props.conditionModule}
+            handleUpdateScreen={props.handleUpdateScreen}
+            setRestModule={props.setRestModule}
+            restModule={props.restModule}
+            saveScreen={props.saveScreen}
+            batchScreen={props.batchScreen} />
+        )} />
+        <Route path='/monsters' render={() => (
+          <Monsters
+            setConditionModule={props.setConditionModule}
+            conditionModule={props.conditionModule}
+            handleUpdateScreen={props.handleUpdateScreen}
+            setRestModule={props.setRestModule}
+            restModule={props.restModule}
+            saveScreen={props.saveScreen}
+            batchScreen={props.batchScreen} />
+        )} />
+        <Route exact path='/' render={() => (
+          <>
+            <h1>Welcome to Heward's Handy DM Screen</h1>
+            <Typography variant="body2" component="p">
+              <span className='scaly'>This digital DM Screen is intended to be a customizable option for your digital reference! To get started, just create an account, and start adding data!</span>
+            </Typography>
+          </>)} />
       </main>
-      <Fab aria-label='save button' className={classes.fab} onClick={props.saveScreen} >
+      <Fab aria-label='save button' color='secondary' className={classes.fab} onClick={props.saveScreen} >
         <SaveIcon />
       </Fab>
     </div >

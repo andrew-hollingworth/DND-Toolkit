@@ -43,7 +43,14 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     margin: theme.spacing(1)
-  }
+  },
+  profileImage: {
+    maxWidth: 250,
+  },
+  welcome: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
 }));
 
 const User = (props) => {
@@ -70,29 +77,34 @@ const User = (props) => {
       props.currentUser
         ?
         <>
-          <h1 className='scaly-b'>Welcome, {props.currentUser.username}</h1>
-          <h2 className='scaly-b'>Profile Image: </h2>
-          <img src={props.currentUser.image} alt="" />
+          <div className={classes.welcome}>
+            <h1 className='scaly-b'>Welcome, {props.currentUser.username}</h1>
+            <span>
+              <Button
+                onClick={handleOpen}
+                variant="contained"
+                className={classes.button}>
+                Edit Profile
+          </Button>
+              <Button
+                onClick={props.handleLogout}
+                variant="contained"
+                className={classes.button}>
+                Logout
+          </Button>
+              <Button
+                onClick={props.handleUserDelete}
+                variant="contained"
+                className={classes.button}>
+                Delete User
+          </Button>
+            </span>
+          </div>
           <h2 className='scaly-b'>Username: <span className='zatanna'>{props.currentUser.username}</span></h2>
           <h2 className='scaly-b'>Email: <span className='zatanna'>{props.currentUser.email}</span></h2>
-          <Button
-            onClick={handleOpen}
-            variant="contained"
-            className={classes.button}>
-            Edit Profile
-          </Button>
-          <Button
-            onClick={props.handleLogout}
-            variant="contained"
-            className={classes.button}>
-            Logout
-          </Button>
-          <Button
-            onClick={props.handleUserDelete}
-            variant="contained"
-            className={classes.button}>
-            Delete User
-          </Button>
+          <h2 className='scaly-b'>Profile Image: </h2>
+          <img className={classes.profileImage} src={props.currentUser.image} alt="profile" />
+
           <Divider />
           <form className={classes.container} noValidate autoComplete="off">
             <TextField

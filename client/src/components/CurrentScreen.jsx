@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
+// import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
@@ -15,12 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 const CurrentScreen = (props) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    props.setConditionModule();
-  }, [])
-
-
 
   const individualData = (data, index) => {
     return (<React.Fragment key={index}>
@@ -37,6 +31,7 @@ const CurrentScreen = (props) => {
   }
   const screenCards = props.currentScreen.modules && props.currentScreen.modules.map((category, index) => {
     const name = Object.keys(category)[0];
+    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
     const catArray = category[name];
     const idArray = []
     catArray.forEach((id) => idArray.push(id.id))
@@ -44,7 +39,7 @@ const CurrentScreen = (props) => {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            <span className='scaly-b'>{name}</span>
+            <span className='scaly-b'>{nameCapitalized}</span>
           </Typography>
           {catArray.map((data, index) => individualData(data, index))}
         </CardContent>
