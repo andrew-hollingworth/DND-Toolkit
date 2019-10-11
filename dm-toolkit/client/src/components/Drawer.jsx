@@ -12,10 +12,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Fab from '@material-ui/core/Fab';
 // ICONS 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SubjectIcon from '@material-ui/icons/Subject';
+import SaveIcon from '@material-ui/icons/Save';
 // My Additions
 import { Link, Route } from 'react-router-dom';
 import AccountMenu from './user/AccountMenu'
@@ -83,6 +85,11 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  fab: {
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    position: 'fixed'
   },
 }));
 
@@ -196,7 +203,8 @@ export default function MiniDrawer(props) {
             handleUpdateScreen={props.handleUpdateScreen}
             setRestModule={props.setRestModule}
             restModule={props.restModule}
-            saveScreen={props.saveScreen} />
+            saveScreen={props.saveScreen}
+            batchScreen={props.batchScreen} />
         )} />
         <Route path='/screen' render={() => (
           <CurrentScreen
@@ -205,9 +213,14 @@ export default function MiniDrawer(props) {
             setRestModule={props.setRestModule}
             conditionModule={props.conditionModule}
             restModule={props.restModule}
-            currentScreen={props.currentScreen} />
+            currentScreen={props.currentScreen}
+            batchScreen={props.batchScreen}
+            handleUpdateScreen={props.handleUpdateScreen} />
         )} />
       </main>
+      <Fab aria-label='save button' className={classes.fab} onClick={props.saveScreen} >
+        <SaveIcon />
+      </Fab>
     </div >
   );
 }

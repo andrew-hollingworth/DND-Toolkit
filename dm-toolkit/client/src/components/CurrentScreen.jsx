@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
@@ -32,15 +33,13 @@ const CurrentScreen = (props) => {
       <Typography variant="body2" component="p">
         <span className='scaly'>{data.page}</span>
       </Typography>
-      <Fab variant="extended" aria-label="TBD BUTTON" className={classes.fab}>
-        <AddIcon className={classes.extendedIcon} />
-        Button?
-  </Fab>
     </React.Fragment>)
   }
   const screenCards = props.currentScreen.modules && props.currentScreen.modules.map((category, index) => {
     const name = Object.keys(category)[0];
     const catArray = category[name];
+    const idArray = []
+    catArray.forEach((id) => idArray.push(id.id))
     return <React.Fragment key={index}>
       <Card className={classes.card}>
         <CardContent>
@@ -50,7 +49,7 @@ const CurrentScreen = (props) => {
           {catArray.map((data, index) => individualData(data, index))}
         </CardContent>
       </Card>
-    </React.Fragment>
+    </React.Fragment >
   })
 
   return (
