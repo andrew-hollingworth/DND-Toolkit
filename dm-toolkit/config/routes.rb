@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :spells
   resources :rests
   resources :conditions
   post '/auth/login', to: 'authentication#login'

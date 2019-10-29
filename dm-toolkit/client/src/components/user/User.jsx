@@ -90,12 +90,13 @@ const User = (props) => {
           <div className={classes.welcome}>
             <h1 className='scaly-b'>Welcome, {props.currentUser.username}</h1>
             <span>
+              Toggle Dark Mode
               <Switch
                 checked={typeSwitch.checkedB}
                 onChange={typeHandleChange('checkedB')}
                 value="checkedB"
                 color="primary"
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ 'aria-label': 'toggle dark mode' }}
               />
               <Button
                 onClick={handleOpen}

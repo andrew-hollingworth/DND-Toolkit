@@ -42,6 +42,8 @@ export const deleteUser = async (userId) => {
   return resp.data.user
 }
 
+//////////////// DATA REQUESTS /////////////////
+
 export const getConditions = async () => {
   let conditions = await api.get('/conditions')
   return conditions.data
@@ -50,6 +52,11 @@ export const getConditions = async () => {
 export const getRests = async () => {
   let rests = await api.get('/rests')
   return rests.data
+}
+
+export const getSpells = async () => {
+  let spells = await api.get('/spells')
+  return spells.data
 }
 
 // //////////// SCREEN FUNCTIONS /////////////////////

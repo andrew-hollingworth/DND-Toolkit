@@ -4,7 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { amber } from '@material-ui/core/colors';
 import {
   loginUser, signupUser, verifyUser, updateUser, deleteUser,
-  getConditions, getRests,
+  getConditions, getRests, getSpells,
   createScreen, getUserScreens, getOneScreen, updateScreen
 } from './services/api-helper'
 import './App.css';
@@ -26,6 +26,7 @@ const App = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [conditions, setConditions] = useState(null);
   const [rest, setRest] = useState(null);
+  const [spells, setSpells] = useState(null);
   const [currentScreen, setCurrentScreen] = useState({});
   const [batchScreen, setBatchScreen] = useState({})
   const [userScreens, setUserScreens] = useState(null);
@@ -168,6 +169,11 @@ const App = (props) => {
     setRest(rests);
   }
 
+  const setSpellModule = async () => {
+    const spells = await getSpells();
+    setSpells(spells);
+  }
+
   // THEMING
   // https://codesandbox.io/s/wz9r8330p7?from-embed
   const [theme, setTheme] = useState({
@@ -224,6 +230,8 @@ const App = (props) => {
           conditionModule={conditions}
           setRestModule={setRestModule}
           restModule={rest}
+          spellModule={spells}
+          setSpellModule={setSpellModule}
           handleScreenCreate={handleScreenCreate}
           screenHandleChange={screenHandleChange}
           newScreenData={newScreenData}

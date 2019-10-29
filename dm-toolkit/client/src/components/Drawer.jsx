@@ -101,6 +101,10 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Mr Eaves Small Caps',
     fontSize: '1.5em',
     color: '#ffffff'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
   }
 
 }));
@@ -173,28 +177,38 @@ export default function MiniDrawer(props) {
         {/* START OF MENU AND ICONS */}
         <Divider />
         <List>
-          <ListItem button key="View Screen">
-            <Link to='/screen'><ListItemIcon>
-              <SubjectIcon />
-            </ListItemIcon></Link>
-            <ListItemText primary="View Screen" />
-          </ListItem>
-          <ListItem button key="Monsters">
-            <Link to='/monsters'><ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
-            <ListItemText primary="Monsters" />
-          </ListItem>
-          <ListItem button key='Combat'>
-            <Link to='/combat'><ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
-            <ListItemText primary="Combat" />
-          </ListItem>
-          <ListItem button key="Spells">
-            <Link to='/spells'><ListItemIcon><span className="iconify" data-icon="fe:magic" data-inline="false" data-width="1.9em" data-height="1.9em"></span></ListItemIcon></Link>
-            <ListItemText primary="Spells" />
-          </ListItem>
-          <ListItem button key="Game Mechanics">
-            <Link to='/mechanics'><ListItemIcon><span className="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon></Link>
-            <ListItemText primary="Game Mechanics" />
-          </ListItem>
+          <Link className={classes.link} to='/screen'>
+            <ListItem button key="View Screen">
+              <ListItemIcon>
+                <SubjectIcon />
+              </ListItemIcon>
+              <ListItemText primary="View Screen" />
+            </ListItem>
+          </Link>
+          <Link className={classes.link} to='/monsters'>
+            <ListItem button key="Monsters">
+              <ListItemIcon><span className="iconify" data-icon="fa-solid:dragon" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+              <ListItemText primary="Monsters" />
+            </ListItem>
+          </Link>
+          <Link className={classes.link} to='/combat'>
+            <ListItem button key='Combat'>
+              <ListItemIcon><span className="iconify" data-icon="mdi:sword-cross" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+              <ListItemText primary="Combat" />
+            </ListItem>
+          </Link>
+          <Link className={classes.link} to='/spells'>
+            <ListItem button key="Spells">
+              <ListItemIcon><span className="iconify" data-icon="fe:magic" data-inline="false" data-width="1.9em" data-height="1.9em"></span></ListItemIcon>
+              <ListItemText primary="Spells" />
+            </ListItem>
+          </Link>
+          <Link className={classes.link} to='/mechanics'>
+            <ListItem button key="Game Mechanics">
+              <ListItemIcon><span className="iconify" data-icon="fa-solid:scroll" data-inline="false" data-width="1.7em" data-height="1.7em"></span></ListItemIcon>
+              <ListItemText primary="Game Mechanics" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
@@ -257,21 +271,15 @@ export default function MiniDrawer(props) {
         )} />
         <Route path='/spells' render={() => (
           <Spells
-            setConditionModule={props.setConditionModule}
-            conditionModule={props.conditionModule}
+            setSpellModule={props.setSpellModule}
+            spellModule={props.spellModule}
             handleUpdateScreen={props.handleUpdateScreen}
-            setRestModule={props.setRestModule}
-            restModule={props.restModule}
             saveScreen={props.saveScreen}
             batchScreen={props.batchScreen} />
         )} />
         <Route path='/monsters' render={() => (
           <Monsters
-            setConditionModule={props.setConditionModule}
-            conditionModule={props.conditionModule}
             handleUpdateScreen={props.handleUpdateScreen}
-            setRestModule={props.setRestModule}
-            restModule={props.restModule}
             saveScreen={props.saveScreen}
             batchScreen={props.batchScreen} />
         )} />

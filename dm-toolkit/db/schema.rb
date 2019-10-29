@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_190557) do
+ActiveRecord::Schema.define(version: 2019_10_29_201638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,28 @@ ActiveRecord::Schema.define(version: 2019_10_10_190557) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_screens_on_user_id"
+  end
+
+  create_table "spells", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "higher_level"
+    t.string "page"
+    t.string "range"
+    t.string "components"
+    t.string "material"
+    t.string "ritual"
+    t.string "duration"
+    t.string "concentration"
+    t.string "casting_time"
+    t.string "level"
+    t.integer "level_int"
+    t.string "school"
+    t.string "dnd_class"
+    t.string "archetype"
+    t.string "circles"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
