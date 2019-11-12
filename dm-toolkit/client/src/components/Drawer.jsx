@@ -253,19 +253,17 @@ export default function MiniDrawer(props) {
             handleCurrentScreenSelect={props.handleCurrentScreenSelect}
             setConditionModule={props.setConditionModule}
             setRestModule={props.setRestModule}
+            setSpellModule={props.setSpellModule}
             conditionModule={props.conditionModule}
             restModule={props.restModule}
+            spellModule={props.spellModule}
             currentScreen={props.currentScreen}
             batchScreen={props.batchScreen}
             handleUpdateScreen={props.handleUpdateScreen} />
         )} />
         <Route path='/combat' render={() => (
           <Combat
-            setConditionModule={props.setConditionModule}
-            conditionModule={props.conditionModule}
             handleUpdateScreen={props.handleUpdateScreen}
-            setRestModule={props.setRestModule}
-            restModule={props.restModule}
             saveScreen={props.saveScreen}
             batchScreen={props.batchScreen} />
         )} />
