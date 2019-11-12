@@ -31,6 +31,10 @@ class ScreensController < ApplicationController
         @rests = Rest.find(params[:screen][:rests])
         @screen.rests = @rests
       end
+      if params[:screen][:spells]
+        @spells = Spell.find(params[:screen][:spells])
+        @screen.spells = @spells
+      end
       render json: @screen.with_associations
     end
 
@@ -53,7 +57,7 @@ class ScreensController < ApplicationController
 
     private 
     def screen_params
-      params.require(:screen).permit(:id, :name, :conditions, :rests)
+      params.require(:screen).permit(:id, :name, :conditions, :rests, :spells)
     end
 
     def user_id
