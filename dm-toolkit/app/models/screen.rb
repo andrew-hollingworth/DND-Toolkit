@@ -10,7 +10,8 @@ class Screen < ApplicationRecord
       name: name,
       modules: [
         conditions.empty? ? nil : {conditions: conditions},
-        rests.empty? ? nil : {rests: rests}
+        rests.empty? ? nil : {rests: rests},
+        spells.empty? ? nil : {spells: spells},
       ].compact
     }
   end

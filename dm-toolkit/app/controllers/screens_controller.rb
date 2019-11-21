@@ -32,7 +32,7 @@ class ScreensController < ApplicationController
         @screen.rests = @rests
       end
       if params[:screen][:spells]
-        @spells = Spell.find(params[:screen][:spells])
+        @spells = Spell.find(params[:spells][:screen])
         @screen.spells = @spells
       end
       render json: @screen.with_associations

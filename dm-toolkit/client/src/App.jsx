@@ -142,7 +142,6 @@ const App = (props) => {
     newCurrentScreen.modules.forEach((module) => {
       const name = Object.keys(module)[0]
       module[name].forEach((each) => {
-        console.log('this is each module', each)
         handleUpdateScreen(name, each.id)
       })
     }
@@ -151,9 +150,7 @@ const App = (props) => {
 
   const saveScreen = async () => {
     const updatedScreen = await updateScreen(currentScreen.id, batchScreen)
-    console.log('this is updatedScreen', updatedScreen)
     setCurrentScreen(updatedScreen)
-    await console.log('this is current screen', currentScreen)
   }
 
   // const handleScreenDelete = async (e) => {

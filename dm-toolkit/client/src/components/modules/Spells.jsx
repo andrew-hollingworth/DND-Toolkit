@@ -34,6 +34,15 @@ const Spell = (props) => {
       <CardContent>
         <Typography variant="h6" component="h3">
           <span className='scaly-b'>{spell.name}</span>
+          <>
+            {classes.map((dndClass, index) => {
+              return <Chip
+                className={classes.classChip}
+                key={index}
+                size="small"
+                label={dndClass} />
+            })}
+          </>
         </Typography>
         <Typography variant="body2" component="p">
           <span className='scaly'>Level: {spell.level}</span> <span className='scaly'> School: {spell.school}</span>
@@ -48,15 +57,6 @@ const Spell = (props) => {
         <Typography variant="body2" component="p">
           <span className='scaly'>{spell.description}</span>
         </Typography>
-        <>
-          {classes.map((dndClass, index) => {
-            return <Chip
-              className={classes.classChip}
-              key={index}
-              size="small"
-              label={dndClass} />
-          })}
-        </>
         <Chip
           className={classes.chips}
           size="small"
@@ -65,12 +65,15 @@ const Spell = (props) => {
           <Fab variant="extended"
             size='small' aria-label="add-to-screen" onClick={() => props.handleUpdateScreen("spells", spell.id)}>
             {props.batchScreen.spells && props.batchScreen.spells.includes(spell.id) ?
-              <> <RemoveIcon className={classes.extendedIcon} />
+              <>
+                <RemoveIcon className={classes.extendedIcon} />
                 Remove from Screen
             </>
-              : <><AddIcon className={classes.extendedIcon} />
+              : <>
+                <AddIcon className={classes.extendedIcon} />
                 Add to Screen
-          </>}
+          </>
+            }
           </Fab>
         </CardActions>
       </CardContent>

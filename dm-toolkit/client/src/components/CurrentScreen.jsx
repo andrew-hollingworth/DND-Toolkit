@@ -16,9 +16,8 @@ const useStyles = makeStyles(theme => ({
 
 const CurrentScreen = (props) => {
   const classes = useStyles();
-
   const individualData = (data, index) => {
-    console.log('this is individual data', data)
+    console.log('data', data)
     return (<React.Fragment key={index}>
       <Typography variant="h6" component="h3">
         <span className='scaly-b'>{data.name}</span>
@@ -26,9 +25,10 @@ const CurrentScreen = (props) => {
       <Typography variant="body2" component="p">
         <span className='scaly'>{data.description}</span>
       </Typography>
-      <Typography variant="body2" component="p">
-        <span className='scaly'>{data.page}</span>
-      </Typography>
+      <Chip
+        className={classes.chips}
+        size="small"
+        label={data.page} />
     </React.Fragment>)
   }
   const screenCards = props.currentScreen.modules && props.currentScreen.modules.map((category, index) => {
@@ -37,16 +37,18 @@ const CurrentScreen = (props) => {
     const catArray = category[name];
     const idArray = []
     catArray.forEach((id) => idArray.push(id.id))
-    return <React.Fragment key={index}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            <span className='scaly-b'>{nameCapitalized}</span>
-          </Typography>
-          {catArray.map((data, index) => individualData(data, index))}
-        </CardContent>
-      </Card>
-    </React.Fragment >
+    return (
+      <React.Fragment key={index}>
+        <Card className={classes.card}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              <span className='scaly-b'>{nameCapitalized}</span>
+            </Typography>
+            {catArray.map((data, index) => individualData(data, index))}
+          </CardContent>
+        </Card>
+      </React.Fragment >
+    )
   })
 
   // const spells = props.spellModule && props.spellModule.map((spell, index) => {
