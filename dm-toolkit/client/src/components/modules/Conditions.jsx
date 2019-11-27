@@ -7,7 +7,6 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
-import Rest from './Rest'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -29,7 +28,14 @@ const Conditions = (props) => {
         <span className='scaly-b'>{condition.name}</span>
       </Typography>
       <Typography variant="body2" component="p">
-        <span className='scaly'>{condition.description}</span>
+        <span className='scaly'>{condition.description.split(`\n`).map(function (desc, index) {
+          return (
+            <span key={index}>
+              {desc}
+              <br />
+            </span>
+          )
+        })}</span>
       </Typography>
       <Typography variant="body2" component="p">
         <span className='scaly'>{condition.page}</span>
@@ -53,7 +59,6 @@ const Conditions = (props) => {
 
   return (
     <>
-      <h1 className='eaves'>Game Mechanics</h1>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">
@@ -62,11 +67,6 @@ const Conditions = (props) => {
           {conditions}
         </CardContent>
       </Card>
-      <Rest
-        restModule={props.restModule}
-        setRestModule={props.setRestModule}
-        handleUpdateScreen={props.handleUpdateScreen}
-        batchScreen={props.batchScreen} />
     </>
   )
 }

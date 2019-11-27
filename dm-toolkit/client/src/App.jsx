@@ -76,7 +76,7 @@ const App = (props) => {
     e.preventDefault();
     const currentUser = await signupUser(authFormData);
     await setCurrentUser(currentUser);
-    handleVerify();
+    await handleVerify();
   }
 
   const handleLogout = () => {

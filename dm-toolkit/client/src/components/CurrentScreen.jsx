@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Fab from '@material-ui/core/Fab';
 import Chip from '@material-ui/core/Chip';
 
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 const CurrentScreen = (props) => {
   const classes = useStyles();
   const individualData = (data, index) => {
-    console.log('data', data)
     return (<React.Fragment key={index}>
       <Typography variant="h6" component="h3">
         <span className='scaly-b'>{data.name}</span>

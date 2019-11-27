@@ -22,7 +22,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link, Route } from 'react-router-dom';
 import AccountMenu from './user/AccountMenu'
 import User from './user/User'
-import Conditions from './modules/Conditions'
+import Mechanics from './modules/Mechanics'
 import CurrentScreen from './CurrentScreen'
 import Combat from './modules/Combat'
 import Spells from './modules/Spells'
@@ -239,7 +239,7 @@ export default function MiniDrawer(props) {
             toggleDarkTheme={props.toggleDarkTheme} />
         )} />
         <Route path='/mechanics' render={() => (
-          <Conditions
+          <Mechanics
             setConditionModule={props.setConditionModule}
             conditionModule={props.conditionModule}
             handleUpdateScreen={props.handleUpdateScreen}

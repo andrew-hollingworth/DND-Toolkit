@@ -33,7 +33,14 @@ const Rest = (props) => {
         <span className='scaly-b'>{rest.name}</span>
       </Typography>
       <Typography variant="body2" component="p">
-        <span className='scaly'>{rest.description}</span>
+        <span className='scaly'>{rest.description.split(`\n`).map(function (desc, index) {
+          return (
+            <span key={index}>
+              {desc}
+              <br />
+            </span>
+          )
+        })}</span>
       </Typography>
       <Typography variant="body2" component="p">
         <span className='scaly'>{rest.page}</span>
