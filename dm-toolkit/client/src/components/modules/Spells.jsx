@@ -8,16 +8,12 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import SpellFilters from './SpellFilters'
 
 const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275,
-    marginBottom: 200,
+    marginBottom: 20,
   },
   fab: {
     bottom: theme.spacing(2),
@@ -35,13 +31,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Spell = (props) => {
+  console.log('props', props)
   const classes = useStyles();
   // Hooks
-  const [spellLevel, setSpellLevel] = useState([]);
+  const [spellFilter, setSpellFilter] = useState({
+    level: [],
+    dnd_class: [],
+    school: [],
+    concentration: null,
+    ritual: null,
+  });
 
   // FILTERS
-  const handleSpellLevelFilter = event => {
-    setSpellLevel(event.target.value);
+  const handleSpellFilter = event => {
+    const { name, value } = event.target
+    setSpellFilter(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
   };
 
   // USEEFFECT
@@ -50,23 +57,26 @@ const Spell = (props) => {
   }, [])
 
   const filtered = props.spellModule && props.spellModule.filter((spell) => {
-    if (spellLevel.length) {
-      return (
-        spellLevel.includes(spell.level)
-      )
+    console.log('filtered function') // THIS IS RUNNING TWICE FOR SOME REASON
+    if (spellFilter.level.length || spellFilter.dnd_class.length || spellFilter.school.length || spellFilter.concentration || spellFilter.ritual) {
+      let levelFilter = spellFilter.level.length && !spellFilter.level.includes(spell.level) ? false : true
+      const dnd_classes = spell.dnd_class.split(',');
+      let classFilter = spellFilter.dnd_class.length && !(spellFilter.dnd_class.some(dndClass => dnd_classes.indexOf(dndClass) >= 0)) ? false : true
+      return (levelFilter && classFilter)
     } else {
-      return props.spellModule
+      return true
     }
   })
 
   const spells = props.spellModule && filtered.map((spell, index) => {
-    const classes = spell.dnd_class.split(',');
+    console.log('spells function')
+    const dnd_classes = spell.dnd_class.split(',');
     return <Card key={index} className={classes.card}>
       <CardContent>
         <Typography variant="h6" component="h3">
           <span className='scaly-b'>{spell.name}</span>
           <>
-            {classes.map((dndClass, index) => {
+            {dnd_classes.map((dndClass, index) => {
               return <Chip
                 className={classes.classChip}
                 key={index}
@@ -140,33 +150,10 @@ const Spell = (props) => {
   return (
     <>
       <h1 className='eaves'>Spells</h1>
-      <FormControl variant='outlined' className={classes.formControl}>
-        <InputLabel id="spell-level-filter">Spell Level</InputLabel>
-        <Select
-          multiple
-          value={spellLevel}
-          onChange={handleSpellLevelFilter}
-          input={<Input id="select-multiple-chip" />}
-          renderValue={selected => (
-            <div className={classes.chips}>
-              {selected.map(value => (
-                <Chip size='small' key={value} label={value} className={classes.chip} />
-              ))}
-            </div>
-          )}
-        >
-          <MenuItem value='Cantrip'>Cantrip</MenuItem>
-          <MenuItem value='1st-level'>1st-Level</MenuItem>
-          <MenuItem value='2nd-level'>2nd-Level</MenuItem>
-          <MenuItem value='3rd-level'>3rd-Level</MenuItem>
-          <MenuItem value='4th-level'>4th-Level</MenuItem>
-          <MenuItem value='5th-level'>5th-Level</MenuItem>
-          <MenuItem value='6th-level'>6th-Level</MenuItem>
-          <MenuItem value='7th-level'>7th-Level</MenuItem>
-          <MenuItem value='8th-level'>8th-Level</MenuItem>
-          <MenuItem value='9th-level'>9th-Level</MenuItem>
-        </Select>
-      </FormControl>
+      <SpellFilters
+        handleSpellFilter={handleSpellFilter}
+        spellFilter={spellFilter}
+      />
       {spells}
     </>
   )
