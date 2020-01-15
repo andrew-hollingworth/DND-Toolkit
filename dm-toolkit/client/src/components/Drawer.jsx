@@ -284,8 +284,15 @@ export default function MiniDrawer(props) {
         <Route exact path='/' render={() => (
           <>
             <h1>Welcome to Heward's Handy DM Screen</h1>
-            <Typography variant="body2" component="p">
-              <span className='scaly'>This digital DM Screen is intended to be a customizable option for your digital reference! To get started, just create an account, and start adding data!</span>
+            <Typography variant="body1" component="p">
+              <span className='scaly'>This digital Dungeon Master Screen is a proof of concept that is still in development. It is intended to allow DMs to collate the rules they most often reference onto a screen. You can check out the Spells page to get a sense for the type of filtering I am implementing, and if you create an account, you can build your own screens!
+              <br /><br />
+                <a href='https://github.com/andrew-hollingworth/DND-Toolkit'>You can find this project on Github.
+                </a>
+                <br /><br />
+                <a href='https://andrewhollingworth.com'>Here are other projects that I've made
+                </a>
+              </span>
             </Typography>
           </>)} />
       </main>
